@@ -76,7 +76,7 @@ OctFormerCls.forward(), modify OctFormerSeg.forward(), modify SegHeader.forward(
     python classification_visual.py --config configs/cls_m40_test.yaml SOLVER.gpu 0,
     ```
 2. Download well-trained model weights for point cloud segmentation via the link:
-   https://drive.google.com/file/d/1mQrGqGzXJ4yQYuruo-tIAKlkY74wSgY4/view?usp=sharing
+   https://drive.google.com/file/d/1mQrGqGzXJ4yQYuruo-tIAKlkY74wSgY4/view?usp=sharing. Place them to the root path. 
 
 3. Run the following code to output visualisation data for point cloud segmentation. 
 
