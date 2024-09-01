@@ -1,6 +1,6 @@
 # 3D Object Recognition and Classification using Artificial Intelligence
 This is the code for the final project of Dongyu Wang, student number 23104424. The implementation 
-is mainly based on the official code of Octformer with several modifications.
+is mainly based on the official code of Octformer (https://github.com/octree-nn/octformer?tab=readme-ov-file) with several modifications.
 
 
 The new content added includes:
@@ -14,8 +14,8 @@ SphericalConv (corresponds to a Convolutional Phase layer), and modify Octformer
 3. Change the architecture of classification head and segmentation head. The code is at ./models/octformercls and 
 ./models/octformerseg. The changes include: modify OctFormerCls.\_\_init__(), modify 
 OctFormerCls.forward(), modify OctFormerSeg.forward(), modify SegHeader.forward(). 
-4. Write some code to visualise intermediate features, including ./classification_visual.py, 
-./segmentation_visual.py, and plot_training_curve.py. 
+4. Write code to visualise intermediate features, including ./classification_visual.py, 
+./segmentation_visual.py, present_cls.py, present_seg.py, and plot_training_curve.py. 
 
 
 ## 1. Installation
@@ -42,21 +42,19 @@ OctFormerCls.forward(), modify OctFormerSeg.forward(), modify SegHeader.forward(
 
 ## 2. ModelNet40 Classification
 
-1. **Data**: Run the following command to prepare the dataset.
+1. Run the following command to prepare the dataset.
 
     ```bash
     python tools/cls_modelnet.py
     ```
-
-2. **Train**: Run the following command to train the network with 1 GPU. 
+2. Run the following command to train the network with 1 GPU. 
     ```bash
     python classification.py --config configs/cls_m40.yaml SOLVER.gpu 0,
     ```
 ## 3. ScanNet Segmentation
 
-1. **Data**: Download the data from the
-   [ScanNet benchmark](https://kaldir.vc.in.tum.de/scannet_benchmark/).
-   Unzip the data and place it to the folder <scannet_folder>. Run the following
+1. **Data**: Download the data from https://kaldir.vc.in.tum.de/scannet_benchmark/.
+   Unzip the data and place it to the folder ./data. Run the following
    command to prepare the dataset.
 
     ```bash
@@ -77,33 +75,45 @@ OctFormerCls.forward(), modify OctFormerSeg.forward(), modify SegHeader.forward(
     ```bash
     python classification_visual.py --config configs/cls_m40_test.yaml SOLVER.gpu 0,
     ```
+2. Download well-trained model weights for point cloud segmentation via the link:
+   https://drive.google.com/file/d/1mQrGqGzXJ4yQYuruo-tIAKlkY74wSgY4/view?usp=sharing
 
-2. Run the following code to output visualisation data for point cloud segmentation. 
+3. Run the following code to output visualisation data for point cloud segmentation. 
 
     ```bash
     python scripts/run_seg_scannet_test.py --gpu 0 --alias scannet --port 10002
     ```
-3. Run the following code to visualise features from point cloud classification.
+4. Run the following code to visualise features from point cloud classification.
     ```bash
     python present_cls.py
     ```
-4. Run the following code to visualise segmentation results. 
+5. Run the following code to visualise segmentation results. 
     ```bash
     python present_seg.py
     ```
-5. Run the following code to plot curves for different metrics during training.
+6. Run the following code to plot curves for different metrics during training.
     ```bash
     python plot_training_curve.py
     ```
 ## 5. Citation
 
    ```bibtex
-    @article {Wang2023OctFormer,
+    @article {OctFormer,
         title      = {OctFormer: Octree-based Transformers for {3D} Point Clouds},
         author     = {Wang, Peng-Shuai},
         journal    = {ACM Transactions on Graphics (SIGGRAPH)},
         volume     = {42},
         number     = {4},
         year       = {2023},
+    }
+   ```
+   ```bibtex
+    @InProceedings{Phai-CNN,
+        author = {Lei, Huan and Akhtar, Naveed and Mian, Ajmal},
+        title = {Octree Guided CNN With Spherical Kernels for 3D Point Clouds},
+        booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+        pages = {9623-9632},
+        month = {Long Beach, USA},
+        year = {2019}
     }
    ```
